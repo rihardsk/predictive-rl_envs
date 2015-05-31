@@ -120,11 +120,11 @@ public class CartPole extends EnvironmentBase implements HasAVisualizerInterface
 
     public Reward_observation_terminal env_step(Action action) {
 
-        assert (action.intArray.length == 1);
-        assert (action.intArray[0] >= 0);
-        assert (action.intArray[0] <= 1);
+        assert (action.doubleArray.length == 1);
+        assert (action.doubleArray[0] >= -1);
+        assert (action.doubleArray[0] <= 1);
 
-        theState.update(action.intArray[0]);
+        theState.update(action.doubleArray[0]);
 
 
         if (theState.inFailure()) {
@@ -216,7 +216,7 @@ public class CartPole extends EnvironmentBase implements HasAVisualizerInterface
         theTaskSpecObject.addContinuousObservation(new DoubleRange(xDotMin, xDotMax));
         theTaskSpecObject.addContinuousObservation(new DoubleRange(thetaMin, thetaMax));
         theTaskSpecObject.addContinuousObservation(new DoubleRange(thetaDotMin, thetaDotMax));
-        theTaskSpecObject.addDiscreteAction(new IntRange(0, 1));
+        theTaskSpecObject.addContinuousAction(new IntRange(-1, 1));
         theTaskSpecObject.setRewardRange(new DoubleRange(-1, 0));
         theTaskSpecObject.setExtra("EnvName:CartPole");
 

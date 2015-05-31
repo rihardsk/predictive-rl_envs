@@ -19,7 +19,7 @@ public class CartPoleState {
     private final static double LENGTH = 0.5;	  /* actually half the pole's length */
 
     private final static double POLEMASS_LENGTH = (MASSPOLE * LENGTH);
-    private final static double FORCE_MAG = 10.0;
+    private final static double FORCE_MAG = 50.0;
     private final static double TAU = 0.02;	  /* seconds between state updates */
 
     private final static double FOURTHIRDS = 4.0d / 3.0d;
@@ -97,7 +97,7 @@ public class CartPoleState {
 
     }
 
-    void update(int theAction) {
+    void update(double theAction) {
         if(theRandom.nextDouble()<=(1.0d-gammaOrExitProb) && !useDiscountFactor){
             natureSaysFail=true;
         }
@@ -109,11 +109,7 @@ public class CartPoleState {
         double sintheta;
         double temp;
 
-        if (theAction > 0) {
-            force = FORCE_MAG;
-        } else {
-            force = -FORCE_MAG;
-        }
+        force = FORCE_MAG * theAction;
 
         //Noise of 1.0 means possibly full opposite action
         double thisNoise=2.0d*noise*FORCE_MAG*(theRandom.nextDouble()-.5d);
