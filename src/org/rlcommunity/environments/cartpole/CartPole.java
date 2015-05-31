@@ -216,7 +216,7 @@ public class CartPole extends EnvironmentBase implements HasAVisualizerInterface
         theTaskSpecObject.addContinuousObservation(new DoubleRange(xDotMin, xDotMax));
         theTaskSpecObject.addContinuousObservation(new DoubleRange(thetaMin, thetaMax));
         theTaskSpecObject.addContinuousObservation(new DoubleRange(thetaDotMin, thetaDotMax));
-        theTaskSpecObject.addContinuousAction(new IntRange(-1, 1));
+        theTaskSpecObject.addContinuousAction(new DoubleRange(-1, 1));
         theTaskSpecObject.setRewardRange(new DoubleRange(-1, 0));
         theTaskSpecObject.setExtra("EnvName:CartPole");
 

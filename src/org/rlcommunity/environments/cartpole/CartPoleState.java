@@ -41,7 +41,7 @@ public class CartPoleState {
 
     double theta_dot;		/* pole angular velocity */
 
-    private int lastAction=0;
+    private double lastAction=0;
 
     private final double gammaOrExitProb=.999d;
 
@@ -158,7 +158,7 @@ public class CartPoleState {
         return theta_dot;
     }
 
-    public int getLastAction(){
+    public double getLastAction(){
         return lastAction;
     }
     /*CART POLE SPECIFIC FUNCTIONS*/

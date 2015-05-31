@@ -33,9 +33,9 @@ public class StateResponse extends AbstractResponse {
     private double x_dot;
     private double angle;
     private double angle_dot;
-    private int theAction;
+    private double theAction;
 
-    public StateResponse(int action, double x, double x_dot, double angle, double angle_dot) {
+    public StateResponse(double action, double x, double x_dot, double angle, double angle_dot) {
         this.x = x;
         this.x_dot = x_dot;
         this.angle = angle;
@@ -51,7 +51,7 @@ public class StateResponse extends AbstractResponse {
 
         StringTokenizer stateTokenizer = new StringTokenizer(thePayLoadString, ":");
 
-        theAction = Integer.parseInt(stateTokenizer.nextToken());
+        theAction = Double.parseDouble(stateTokenizer.nextToken());
         x = Double.parseDouble(stateTokenizer.nextToken());
         x_dot = Double.parseDouble(stateTokenizer.nextToken());
         angle = Double.parseDouble(stateTokenizer.nextToken());
@@ -102,7 +102,7 @@ public class StateResponse extends AbstractResponse {
         return angle;
     }
 
-    public int getAction() {
+    public double getAction() {
         return theAction;
     }
 
