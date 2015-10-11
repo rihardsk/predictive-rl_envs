@@ -12,8 +12,16 @@
 hs_err_pid*
 
 # some Java compiled stuff i guess
-._.DS_Store
-._FourierSarsaAgent-Java-R1337
-._products
-._system
+# ._.DS_Store
+# ._FourierSarsaAgent-Java-R1337
+# ._products
+# ._system
+._*
 .DS_Store
+
+# Ant stuff
+build/
+!build.xml
+
+*.zip
+*.gz
