@@ -1,0 +1,63 @@
+<project name="btannerAgentLib" basedir="." >
+	<!-- Things required for build-common.xml -->
+	<property name="baseLibraryDir" value=".."/>
+	<property name="this.project.system.directory" value="${baseLibraryDir}/system"/>
+	<property name="this.project.product.directory" value="${baseLibraryDir}/products"/>
+	<property name="project.name" value="${ant.project.name}"/>
+	<property name="main.project.name" value="${ant.project.name}"/>
+	<import file="${this.project.system.directory}/common/ant/build-common.xml"/>
+
+	<path id="project.extra.classpath">
+	                <fileset dir="system/libs" >
+	                    <include name="Jama-1.0.2.jar"/>
+	                </fileset>
+     </path>
+	
+	<!-- Things required for build-targets.xml -->
+	<property name="main.package.name" value="src.org.rlcommunity.btanner.agentLib/"/>
+	<property name="main.package.spec.version" value="1.1"/>
+	<property name="main.vendor.name" value="Brian Tanner"/>
+    <property name="jar.extra.classpath" value="../system/common/libs/rl-viz/RLVizLib.jar" />
+
+	<import file="${this.project.system.directory}/common/ant/build-targets.xml"/>
+
+
+	<target name="build">
+	        <unzip src="system/libs/Jama-1.0.2.jar" dest="build/classes/"/>
+	        <antcall target="rl-jar" />
+	        <antcall target="public-agents" />
+	</target>
+
+	<target name="debug" depends="rl-set-debug,build"/>
+	<target name="test" depends="rl-test"/>
+	<target name="javadoc" depends="rl-javadoc"/>
+	<target name="clean-build" depends="clean, build"/>
+	<target name="clean" depends="rl-clean"/>
+
+<!-- extra targets -->
+<target name="public-agents-clean">
+	<delete file="products/EpsilonGreedyTileCodingSarsaLambda.jar" />
+</target>
+<target name="public-agents" depends="rl-compile,get.svn.version,get.rlvizlib.version">
+    <unzip src="system/libs/Jama-1.0.2.jar" dest="build/classes/"/>
+	<echo message="Version is ${rlvizlib.spec.version}" />
+	    <mkdir dir="${this.project.product.directory}" />
+	    <jar destfile="${this.project.product.directory}/EpsilonGreedyTileCodingSarsaLambda.jar"  >
+			<fileset dir="${classes.dir}" excludes="org/rlcommunity/btanner/agents/*.class"/>
+	        <manifest>
+                <attribute name="Main-Class" value="org.rlcommunity.agents.EpsilonGreedyTileCodingSarsaLambda"/>
+			   <attribute name="RLVizLib-Link-Version" value="${rlvizlib.spec.version}"/>
+		           <attribute name="Class-Path" value="${jar.extra.classpath}" />
+			    <section name="org.rlcommunity.agents">
+			      <attribute name="Specification-Title" value="bt-public-agents"/>
+			      <attribute name="Specification-Version" value="${main.package.spec.version}"/>
+			      <attribute name="Specification-Vendor" value="RLAI"/>
+			      <attribute name="Implementation-Title" value="bt-public-agents"/>
+			      <attribute name="Implementation-Version" value="Build:${svn.revision.version}"/> 
+			      <attribute name="Implementation-Vendor" value="${main.vendor.name}"/>
+			    </section>
+	        </manifest>
+	    </jar>
+</target>
+</project>
+

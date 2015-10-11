@@ -1,0 +1,89 @@
+Author: Olivier Remillard
+
+Title: Neurostimulation Simulator, Version 1.0
+
+Last update: 22.07.09
+
+Contact information:
+
+  Olivier Remillard
+  Reasoning and Learning Lab, McGill University
+  http://www.cs.mcgill.ca/~oremil
+  olivier.remillard@mail.mcgill.ca (bugs, problems, questions)
+
+Description:
+
+  This simulator is designed as a teaching and testing tool for
+  adaptive neurostimulation research and epilepsy therapy. The source
+  is divided into three parts: core, system, and utility.  The core
+  sources are the high-level RL-Glue executables: Environment, Agent,
+  Experiment. The system source defines the simulation engine (see
+  ATTRIBUTION).  The utility source defines matrix/vector operations
+  as well as a KD-tree implementation (see ATTRIBUTION) used by the
+  simulation engine.
+  
+  This example requires that the RL-Glue Core has been installed.
+  The C/C++ Codec is not necessary.
+  
+Getting started:
+
+  Libraries:
+
+	This software requires lapack, Boost and the Boost numeric 
+	bindings (not an official part of the boost library). 
+	Information on obtaining a copy of this source can be found here:
+
+    http://www.opentissue.org/wikitissue/index.php/Boost_bindings
+
+  Compiling:
+  
+    Depending on whether you have RL-Glue Core in your include and
+    library paths, you may have to update the Makefile or not.  If the
+    installation was to the default location, this Makefile may not
+    need to be edited. If you have to update the Makefile, set the -I
+    and -L for CFLAGS and LDFLAGS to point to where you installed the
+    headers and libs. Also, set BOOST to point to the boost directory.
+
+		$> make
+
+  Executing:
+  
+  	Compile First! (above)
+  	
+	**RL-Glue Core**
+
+		$> ./Neurostim
+
+	**C/C++ Codec**
+	
+	  These instructions assume that you have rl_glue (or rl_glue.exe)
+	  installed on your path so that you don't have to type the full
+	  path to it.
+
+	  Execute the following commands in different console/terminal
+	  windows: #If you want to do them in the same terminal
+	  window, #append an ampersand & to each line
+	  
+		$> ./NeurostimAgent
+		$> ./NeurostimEnvironment
+		$> ./NeurostimExperiment
+		$> rl_glue #(maybe rl_glue.exe)
+	  
+Attribution:
+
+  This simulation engine extends codes described in Bush, K., Pineau,
+  J., Avoli, M., Manifold Embeddings for Model-Based Reinforcement
+  Learning of Neurostimulation Policies, ICML Workshop on Abstraction
+  in Reinforcment Learning, June, 2009.
+ 
+  This software utilizes the KD-tree implementation written by 
+  Matthew Kennel (2004).  A copy of this source is included in
+  this distribution.
+
+Copyright:
+
+  (c) Olivier Remillard, Reasoning and Learning Lab, McGill University (2009)
+  (c) Keith Bush, Reasoning and Learning Lab, McGill University (2009)
+
+  This softwared is licensed under the Academic Free License version
+  2.1 found in file LICENSE.

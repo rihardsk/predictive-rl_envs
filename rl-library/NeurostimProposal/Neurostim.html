@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="Description" content="Proposal" />
+<link rel="stylesheet" type="text/css" href="http://www.gstatic.com/sites/p/1247193193374/system/app/themes/default/standard-css-default-ltr-ltr.css" />
+<link rel="stylesheet" type="text/css" href="/_/rsrc/1247193795944/system/app/css/overlay.css?cb=1100%25undefinednull150goog-ws-left-nohead" />
+<title>Neurostim</title>
+<!--[if IE 6]>
+            <style type="text/css">
+              div.sites-sidebar-nav {
+                width: 100%;
+              }
+              .sites-sidebar-nav a {
+                display: inline;
+              }
+              .sites-sidebar-nav .expander {
+                left: -15px;
+              }
+              .sites-sidebar-nav .current-bg .expander {
+                left: 185px;
+              }
+              div.sites-sidebar-nav {
+                width: 100%;
+              }
+            </style>
+          <![endif]-->
+<!--[if IE]>
+            <style type="text/css">
+            .sites-sidebar-nav .current-bg {
+              margin-top: 0;
+              padding-top: 0;
+            }
+            </style>
+          <![endif]-->
+<script type="text/javascript">
+                window.jstiming.load.tick('cl');
+              </script>
+</head>
+
+<body xmlns="http://www.google.com/ns/jotspot" id="body" class=" en">
+
+<div xmlns="http://www.w3.org/1999/xhtml" id="COMP_26182369766272306" class="sites-embed" style="width:">
+<h4 class="sites-embed-title"></h4>
+
+<td id="sites-canvas-wrapper">
+<div id="sites-canvas">
+<div id="goog-ws-editor-toolbar-container"> </div>
+<h3 xmlns="http://www.w3.org/1999/xhtml" id="sites-page-title-header" style="" align="left">
+<span id="sites-page-title" dir="ltr">Neurostim</span>
+</h3>
+
+<div id="sites-canvas-main" class="sites-canvas-main">
+<div id="sites-canvas-main-content">
+<table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" class="sites-layout-hbox"><tbody><tr><td class="sites-layout-tile sites-tile-name-content-1"><div dir="ltr">
+
+<div style="display:inline; float:left; margin:5px 20px 5px 0; width:250px;">
+<div class="goog-toc sites-embed-toc-maxdepth-5"><p>Contents</p><ol class="goog-toc"><li class="goog-toc"><a href="#TOC-Introduction"><strong>1 </strong>Introduction</a></li><li class="goog-toc"><a href="#TOC-Technical-Details"><strong>2 </strong>Technical Details</a><ol class="goog-toc"><li class="goog-toc"><a href="#TOC-Observation-Space"><strong>2.1 </strong>Observation Space</a></li><li class="goog-toc"><a href="#TOC-Action-Space"><strong>2.2 </strong>Action Space</a></li><li class="goog-toc"><a href="#TOC-Reward:"><strong>2.3 </strong>Reward</a></li></ol></li><li class="goog-toc"><a href="#TOC-Other-Details"><strong>3 </strong>Other Details</a><ol class="goog-toc"><li class="goog-toc"><a href="#TOC-Source"><strong>3.1 </strong>Source</a></li></ol></li></ol></div>
+</div>
+
+<br /><h2><a name="TOC-Introduction"></a>Introduction</h2>
+
+<div>This simulator is designed as a teaching and testing tool for adaptive neurostimulation research and epilepsy therapy.
+<br />
+<br />The simulation faithfully emulates the dynamics of the rat
+hippocampal brain slice recorded in the Entorhinal Cortex under
+external electrical stimulation applied to the Amygdala. Key
+properties of this domain are: nonlinear dynamics, partial
+observability, noisy observations, and currently unknown first
+principles. An example of typical simulation output (without
+stimulation) is depicted below.<br />  <br /> <br /> <br />
+<br /> <br /> <br />
+
+
+<div style="margin:5px 10px;display:inline"><img border="0" src="./signal.png" /></div>
+</div>
+
+<br /><h2><a name="TOC-Technical-Details"></a>Technical Details</h2>
+<h4><a name="TOC-Observation-Space"></a>Observation Space</h4> The
+system is observable through one continuous variable and one discrete
+variable.<br />  <br />
+<ol>	
+  <li> observed neural field potential in millivolts (mV)</li>
+  <li> patient state:
+    <ul>
+      <li> 0 for normal</li>
+      <li> 1 for seizure</li>
+    </ul>
+  </li>
+</ol><br />
+
+<h4><a name="TOC-Action-Space"></a>Action Space</h4> Neurostim
+receives a single, discrete action from the set {0,1}.  The action (1)
+simulates application of a single electrical pulse to the neural
+system.  The action (0) simulates no stimulation.
+<br /><h4><a name="TOC-Reward:"></a>Reward</h4></ br> Reward values
+can be modified via messaging. Suggested rewards:
+	<ul>
+	  <li> 0 per normal patient state</li>
+	  <li> -40 per seizure patient state</li>
+	  <li> -1 per stimulation</li>
+	</ul>
+
+<div><p style="margin-top:10px;margin-right:0px;margin-bottom:10px;margin-left:0px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px"><span style="font-weight:bold">Additional technical details</span></p>
+<p style="margin-top:10px;margin-right:0px;margin-bottom:10px;margin-left:0px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px"></p>
+<ul style="margin-right:10px">
+	<li style="padding-top:1px;padding-right:0px;padding-bottom:1px;padding-left:0px">For
+	further details see <i>Bush, K., Pineau, J., Avoli, M.,
+	Manifold Embeddings for Model-Based Reinforcement Learning of
+	Neurostimulation Policies, ICML Workshop on Abstraction in
+	Reinforcment Learning, June, 2009.</i></li>
+</ul></div>
+	
+<h2><a name="TOC-Other-Details"></a>Other Details</h2><ul><li>Languages:  <b>C/C++</b>,<b>Java</b></li></ul>
+
+<h4><a name="TOC-Source"></a>Source</h4>
+<p>Both source includes:
+<ol><li> the Neurostim environment</li>
+	<li> a fixed frequency stimulating agent</li>
+	<li> a simple experiment</li></ol></p>
+<a href="./JavaNeurostim">Java source</a><br /><br />
+<a href="./CCPPNeurostim">C/C++ source</a><br /><br />
+</div></td></tr></tbody></table>
+
+</div> 
+</div> 
+</td> 
+</tr>
+</table> 
+</div> 
+</div> 
+</body>
+</html>

@@ -1,0 +1,107 @@
+Author: Olivier Remillard
+
+Title: Neurostimulation Simulator, Version 1.0
+
+Last update: 22.07.09
+
+Contact information:
+
+  Olivier Remillard
+  Reasoning and Learning Lab, McGill University
+  http://www.cs.mcgill.ca/~oremil
+  olivier.remillard@mail.mcgill.ca (bugs, problems, questions)
+
+Description:
+
+  This simulator is designed as a teaching and testing tool for
+  adaptive neurostimulation research and epilepsy therapy.  The source
+  is divided into three parts: core, system, and utility.  The core
+  sources are a high-level RL-Glue Java Codec executable: Environment,
+  Agent, Experiment.  The system source defines the simulation engine
+  (see ATTRIBUTION).  The utility source defines matrix/vector
+  operations as well as a KD-tree implementation used by the
+  simulation engine.
+  
+  This package requires the Java Codec:
+  http://glue.rl-community.org/Home/Extensions/java-codec
+  
+Getting started:
+
+  Compiling:
+  
+    Depending on whether you have the Java codec installed to your 
+    Java path or not, you will either need to do:
+
+    #Java Codec Installed
+    >$ javac -sourcepath src -classpath ./bin src/*/*.java -d ./bin
+
+    #Java Codec In Free-Float mode (not installed)
+    >$ javac -sourcepath src -classpath /path/to/JavaRLGlueCodec.jar:./bin src/*/*.java -d ./bin
+
+
+    Note, if you are on windows you need to change the classpath 
+    separator from : to \;
+
+  Executing:
+
+    Compile First! (above)
+
+	These instructions assume JavaRLGlueCodec.jar is in your classpath (installed).
+	If not, you will need to add :
+	  -classpath /path/to/JavaRLGlueCodec.jar 
+	in each line that calls 'java'.
+
+	They also assume that you have rl_glue (or rl_glue.exe) installed 
+	on your path so that you don't have to type the full path to it.
+
+    **Using Separate Processes and Communicating over Sockets**
+    
+      This is the most general option, because you could use any 
+      combination of agent/environment/experiment in Java or any
+      other language.
+
+      Execute the following commands in different console/terminal
+      windows: #If you want to do them in the same terminal window
+      #append an ampersand & to each line
+        
+        $> java -cp ./bin core/NeurostimAgent
+        $> java -cp ./bin core/NeurostimEnvironment
+        $> java -cp ./bin core/NeurostimExperiment
+        $> rl_glue #(maybe rl_glue.exe)
+
+	**Using Separate Threads and Communicating over Sockets**
+	
+	  This might be useful if at least two of your components are
+	  in Java.  You can combine your code to save some
+	  command-line manipulations.
+
+	  Execute the following commands in different console/terminal
+	  windows: #If you want to do them in the same terminal window
+	  #append an ampersand & to each line
+
+	  $> java -cp ./bin core/RunAllNeurostim
+	  $> rl_glue #(maybe rl_glue.exe)
+
+	**Using Separate Threads and Communicating WITHOUT Sockets (Local Glue!)**
+	
+	  This is useful is fall three of your components are in Java.  
+	  You can stick your code together to save some command-line manipulation,
+	  and it will run MUCH faster.
+
+	  $> java -cp ./bin core/RunAllNeurostimNoSockets
+	  #No rl_glue necessary.
+
+Attribution:
+
+  This simulation engine extends codes described in Bush, K., Pineau,
+  J., Avoli, M., Manifold Embeddings for Model-Based Reinforcement
+  Learning of Neurostimulation Policies, ICML Workshop on Abstraction
+  in Reinforcment Learning, June, 2009.
+ 
+Copyright:
+
+  (c) Olivier Remillard, Reasoning and Learning Lab, McGill University (2009)
+  (c) Keith Bush, Reasoning and Learning Lab, McGill University (2009)
+
+  This softwared is licensed under the Academic Free License version
+  2.1 found in file LICENSE.

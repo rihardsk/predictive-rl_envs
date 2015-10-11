@@ -1,0 +1,51 @@
+<project name="fourierBasisAgentLib" basedir="." >
+	<!-- Things required for build-common.xml -->
+	<property name="baseLibraryDir" value=".."/>
+	<property name="this.project.system.directory" value="${baseLibraryDir}/system"/>
+	<property name="this.project.product.directory" value="${baseLibraryDir}/products"/>
+	<property name="project.name" value="${ant.project.name}"/>
+	<property name="main.project.name" value="${ant.project.name}"/>
+	<import file="${this.project.system.directory}/common/ant/build-common.xml"/>
+
+	<path id="project.extra.classpath" />
+	
+	<!-- Things required for build-targets.xml -->
+	<property name="main.package.name" value="src.org.rlcommunity.agents/"/>
+	<property name="main.package.spec.version" value="1.0"/>
+	<property name="main.vendor.name" value="George Konidaris"/>
+	<path id="project.extra.classpath" />
+
+<!-- added by btanner to allow java -jar thisjar.jar startup -->
+    <property name="jar.main.class" value="org.rlcommunity.agents.EpsilonGreedyFourierBasisSarsaLambda" />
+    <property name="jar.extra.classpath" value="../system/common/libs/rl-viz/RLVizLib.jar" />
+
+	<import file="${this.project.system.directory}/common/ant/build-targets.xml"/>
+
+	<import file="${this.project.system.directory}/common/ant/predefined-target-aliases.xml"/>
+
+<!-- extra targets -->
+<target name="public-agents-clean">
+	<delete file="products/EpsilonGreedyFourierBasisSarsaLambda.jar" />
+</target>
+<target name="public-agents" depends="rl-compile,get.svn.version,get.rlvizlib.version">
+	<echo message="Version is ${rlvizlib.spec.version}" />
+	    <mkdir dir="${this.project.product.directory}" />
+	    <jar destfile="${this.project.product.directory}/EpsilonGreedyFourierBasisSarsaLambda.jar"  >
+            <fileset dir="${classes.dir}"/>
+	        <manifest>
+                <attribute name="Main-Class" value="org.rlcommunity.agents.EpsilonGreedyFourierBasisSarsaLambda"/>
+			   <attribute name="RLVizLib-Link-Version" value="${rlvizlib.spec.version}"/>
+		           <attribute name="Class-Path" value="${jar.extra.classpath}" />
+			    <section name="org.rlcommunity.agents">
+			      <attribute name="Specification-Title" value="gdk-public-agents"/>
+			      <attribute name="Specification-Version" value="${main.package.spec.version}"/>
+			      <attribute name="Specification-Vendor" value="ALL"/>
+			      <attribute name="Implementation-Title" value="bgdk-public-agents"/>
+			      <attribute name="Implementation-Version" value="Build:${svn.revision.version}"/> 
+			      <attribute name="Implementation-Vendor" value="${main.vendor.name}"/>
+			    </section>
+	        </manifest>
+	    </jar>
+</target>
+</project>
+
