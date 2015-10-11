@@ -1,4 +1,4 @@
-<project name="CartPole" basedir="." >
+<project default="predefined-target-aliases.run" name="CartPole" basedir="." >
 
 	<property name="baseLibraryDir" value=".."/>
 	<property name="this.project.system.directory" value="${baseLibraryDir}/system"/>
