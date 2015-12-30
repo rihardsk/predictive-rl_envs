@@ -8,7 +8,7 @@ source $systemPath/scripts/rl-library-includes.sh
 
 #Linux command to start RL_glue
 #rl_glue &
-#startRLGlueInBackGround
+startRLGlueInBackGround
 
 #Linux Command for EnvironmentShell
 #java -ea -Xmx128M -jar $systemPath/common/libs/rl-viz/EnvironmentShell.jar environment-jar-path=$productsPath &
@@ -16,6 +16,6 @@ startEnvShellInBackGround
 
 startNetGuiTrainerDynamicEnvironmentStandardAgent
 
-#waitForAgentShellToDie
-#waitForRLGlueToDie
+waitForAgentShellToDie
+waitForRLGlueToDie
 
