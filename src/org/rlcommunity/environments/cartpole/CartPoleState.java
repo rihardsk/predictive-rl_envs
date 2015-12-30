@@ -19,7 +19,7 @@ public class CartPoleState {
     private final static double LENGTH = 0.5;	  /* actually half the pole's length */
 
     private final static double POLEMASS_LENGTH = (MASSPOLE * LENGTH);
-    private final static double FORCE_MAG = 50.0;
+    public final static double FORCE_MAX = 200.0;
     private final static double TAU = 0.02;	  /* seconds between state updates */
 
     private final static double FOURTHIRDS = 4.0d / 3.0d;
@@ -109,10 +109,13 @@ public class CartPoleState {
         double sintheta;
         double temp;
 
-        force = FORCE_MAG * theAction;
+        // force = FORCE_MAG * theAction;
+        force = theAction;
+        force = Math.min(force, FORCE_MAX);
+        force = Math.max(force, -FORCE_MAX);
 
         //Noise of 1.0 means possibly full opposite action
-        double thisNoise=2.0d*noise*FORCE_MAG*(theRandom.nextDouble()-.5d);
+        double thisNoise=2.0d*noise*FORCE_MAX*(theRandom.nextDouble()-.5d);
 
         force+=thisNoise;
 
